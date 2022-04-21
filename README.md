@@ -123,7 +123,7 @@ module RascalJavaBindings
 @javaClass{com.mycompany.app.App}
 public java int BigIncrement(int rascal_value);
 ```
-
+_Note_: This will NOT work if you have opened VS-code with a parent folder of the project. Ensure that `MY-APP` is the root folder opened in VScode (Top of file browser on the left).
 Now, in a Rascal terminal `import RascalJavaBindings;` and call it using `BigIncrement(20)`.
 
 
