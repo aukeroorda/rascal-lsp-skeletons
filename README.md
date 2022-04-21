@@ -75,7 +75,7 @@ Next up, let Maven download and install the dependencies:
 ```
 mvn verify
 ```
-Now the Vallang library is available in our Java files. First add a constructor taking an `IValueFactory` object:
+Now the Vallang library is available in our Java files. First add a constructor in `src/main/java/com/mycompany/app/App.java` taking an `IValueFactory` object:
 ```java
 import io.usethesource.vallang.IInteger;
 import io.usethesource.vallang.IValueFactory;
@@ -110,7 +110,8 @@ And finally, lets create the binding between Rascal and the Java file we created
 ```
 module CallJavaFunction
 
-
-@javaClass{rascalJava.FuzzyWuzzyBinding}
-public java int fuzz_token_sort_ratio(str lhs, str rhs);
+@javaClass{com.mycompany.app.App}
+public java int BigIncrement(int rascal_value);
 ```
+
+Now, in a Rascal terminal `import CallJavaFunction;` and call it using `BigIncrement(10)`.
