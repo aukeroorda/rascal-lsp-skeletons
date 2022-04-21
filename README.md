@@ -148,11 +148,16 @@ mvn install:install-file \
   -Dversion=[...]
 ```
 
-3. Add the installed artifact as dependecy in `pom.xml` using the specified metadata:
+3. Add each installed artifact as dependecy in `pom.xml` using the specified metadata:
 ```xml
     <dependency>
       <groupId>groupId</groupId>
       <artifactId>artifactId</artifactId>
       <version>version</version>
     </dependency>
+```
+
+4. Let Maven download and install the dependencies:
+```sh
+mvn verify
 ```
