@@ -11,6 +11,7 @@ public class App
     public App(IValueFactory vf) {
         this.vf = vf;
     }
+
     public IInteger BigIncrement(IInteger rascal_value) {
         // Convert to Java value
         int java_value = rascal_value.intValue();
