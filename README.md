@@ -116,15 +116,43 @@ and then add a function `BigIncrement` to the same class:
 ```
 
 ### Constructing the Rascal source
-And finally, lets create the binding between Rascal and the Java file we created. Lets do this in a new file `src/CallJavaFunction.rsc`:
+And finally, lets create the binding between Rascal and the Java file we created. Lets do this in a new file `src/RascalJavaBindings.rsc`:
 ```rascal
-module CallJavaFunction
+module RascalJavaBindings
 
 @javaClass{com.mycompany.app.App}
 public java int BigIncrement(int rascal_value);
 ```
 
-Now, in a Rascal terminal `import CallJavaFunction;` and call it using `BigIncrement(20)`.
+Now, in a Rascal terminal `import RascalJavaBindings;` and call it using `BigIncrement(20)`.
 
 
-## Using Java libraries
+## Using local Java libraries
+Based on [this so answer](https://stackoverflow.com/questions/364114/can-i-add-jars-to-maven-2-build-classpath-without-installing-them/7623805#7623805):
+1. Add a new local repository to `pom.xml`:
+```xml
+<repository>
+    <id>repo</id>
+    <url>file://${project.basedir}/repo</url>
+</repository>
+```
+2. Install each local jar as artifacts using Maven. Be sure to specify the correct metadata:
+```sh
+mvn install:install-file \
+  -DlocalRepositoryPath=repo \
+  -DcreateChecksum=true \
+  -Dpackaging=jar \
+  -Dfile=[your-jar] \
+  -DgroupId=[...] \
+  -DartifactId=[...] \
+  -Dversion=[...]
+```
+
+3. Add the installed artifact as dependecy in `pom.xml` using the specified metadata:
+```xml
+    <dependency>
+      <groupId>groupId</groupId>
+      <artifactId>artifactId</artifactId>
+      <version>version</version>
+    </dependency>
+```
