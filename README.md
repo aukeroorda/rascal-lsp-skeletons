@@ -48,7 +48,7 @@ syntax Trans = trans: Id event ":" Id to;
 ```
 
 ## Working with Java bindings
-In Rascal, you can bind functions to Java. To convert values between Rascal and Java, we use the library [Vallang](). This has to be added as a dependency to the maven project first in the file `pom.xm in the file `pom.xml`. Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). First, add this repository to the `pom.xml` file as follows:
+In Rascal, you can bind functions to Java. To convert values between Rascal and Java, we use the library [Vallang](). This has to be added as a dependency to the maven project first in the file `pom.xml` in the file `pom.xml`. Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). First, add this repository to the `pom.xml` file as follows:
 ```
 
 ```
