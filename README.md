@@ -46,15 +46,15 @@ start syntax Machine = machine: State+ states;
 syntax State = @Foldable state: "state" Id name Trans* out;
 syntax Trans = trans: Id event ":" Id to;
 ```
-You should now be able to open a Rascal console in either of two ways:
+You should now be able to import this module in a Rascal console in either of two ways:
 - Click `Import in new Rascal terminal` at the top of the `Syntax.rsc` source file or
 - Open a Rascal Terminal yourself (cmd/ctrl + shift + P > Create Rascal Terminal), and import using `import Syntax;`.
 
 ## Working with Java bindings
-In Rascal, you can bind functions to Java, and therefore use Java libraries. However, this requires a conversion between Java and Rascal values.
+In Rascal, you can bind functions to Java, and therefore use Java libraries. However, this requires a conversion between Java and Rascal values. To convert values between Rascal and Java, we use the library [Vallang](https://github.com/usethesource/vallang).
 
 ### Making Vallang available
-To convert values between Rascal and Java, we use the library [Vallang](). Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). This has to be added as a dependency to the maven project first in the file `pom.xml` as a child of the `project` node:
+Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). This has to be added as a dependency to the maven project first in the file `pom.xml` as a child of the `project` node:
 ```xml
   <repositories>
     <repository>
@@ -116,7 +116,7 @@ and then add a function `BigIncrement` to the same class:
 ```
 
 ### Constructing the Rascal source
-And finally, lets create the binding between Rascal and the Java file we created. Lets do this in a new file `CallJavaFunction.rsc`:
+And finally, lets create the binding between Rascal and the Java file we created. Lets do this in a new file `src/CallJavaFunction.rsc`:
 ```rascal
 module CallJavaFunction
 
@@ -124,4 +124,7 @@ module CallJavaFunction
 public java int BigIncrement(int rascal_value);
 ```
 
-Now, in a Rascal terminal `import CallJavaFunction;` and call it using `BigIncrement(10)`.
+Now, in a Rascal terminal `import CallJavaFunction;` and call it using `BigIncrement(20)`.
+
+
+## Using Java libraries
