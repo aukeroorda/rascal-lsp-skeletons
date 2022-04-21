@@ -22,7 +22,7 @@ cd my-app
 ## Including Rascal project information
 First, create a directory to hold the Rascal project information:
 ```
-mkdir META-INF && cd META-INF 
+mkdir META-INF && cd META-INF
 ```
 
 In this directory, create a file `RASCAL.MF` with the following contents:
