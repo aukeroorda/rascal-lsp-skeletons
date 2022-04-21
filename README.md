@@ -152,11 +152,29 @@ mvn install:install-file \
   -Durl=file:./local-maven-repo/ \
   -DrepositoryId=local-maven-repo \
   -DcreateChecksum=true \
+  -DupdateReleaseInfo=true \
+  -DgeneratePom=true \
   -Dpackaging=jar \
   -Dfile=[your-jar] \
   -DgroupId=[...] \
   -DartifactId=[...] \
   -Dversion=[...]
+```
+
+An example:
+```
+mvn install:install-file \
+  -DlocalRepositoryPath=local-maven-repo \
+  -Durl=file:./local-maven-repo/ \
+  -DrepositoryId=local-maven-repo \
+  -DcreateChecksum=true \
+  -DupdateReleaseInfo=true \
+  -DgeneratePom=true \
+  -Dpackaging=jar \
+  -Dfile=./lib/frink.jar \
+  -DgroupId=frinklang \
+  -DartifactId=frink \
+  -Dversion=22.4.18
 ```
 
 3. Add each installed artifact as dependecy in `pom.xml` using the specified metadata:
