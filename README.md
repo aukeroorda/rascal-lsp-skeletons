@@ -35,7 +35,7 @@ Source: src
 ```
 
 ## Creating a Rascal file
-Next up, create a Rascal file in the constructed `my-app/src/` directory.
+Next up, create a Rascal file `Syntax.rsc` in the constructed `my-app/src/` directory.
 ```
 module Syntax
 
@@ -45,4 +45,19 @@ extend lang::std::Id;
 start syntax Machine = machine: State+ states;
 syntax State = @Foldable state: "state" Id name Trans* out;
 syntax Trans = trans: Id event ":" Id to;
+```
+
+## Working with Java bindings
+In Rascal, you can bind functions to Java. To convert values between Rascal and Java, we use the library [Vallang](). This has to be added as a dependency to the maven project first in the file `pom.xm in the file `pom.xml`. Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). First, add this repository to the `pom.xml` file as follows:
+```
+
+```
+
+Lets do this in a new file `CallJavaFunction.rsc`:
+```
+module CallJavaFunction
+
+
+@javaClass{rascalJava.FuzzyWuzzyBinding}
+public java int fuzz_token_sort_ratio(str lhs, str rhs);
 ```
