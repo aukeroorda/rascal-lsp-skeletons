@@ -3,13 +3,16 @@ package com.mycompany.app;
 import io.usethesource.vallang.IInteger;
 import io.usethesource.vallang.IValueFactory;
 
+import frink.parser.Frink;
 
 public class App 
 {
     private final IValueFactory vf;
+    private Frink interp;
 
     public App(IValueFactory vf) {
         this.vf = vf;
+        this.interp = new Frink();
     }
 
     public IInteger BigIncrement(IInteger rascal_value) {
