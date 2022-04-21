@@ -18,12 +18,30 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>usethesource</id>
+      <url>https://releases.usethesource.io/maven/</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>usethesource</id>
+      <url>https://releases.usethesource.io/maven/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.usethesource</groupId>
+      <artifactId>vallang</artifactId>
+      <version>0.14.4</version>
     </dependency>
   </dependencies>
 
