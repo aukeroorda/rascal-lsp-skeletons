@@ -107,7 +107,7 @@ and then add a function `BigIncrement` to the `src/main/java/com/mycompany/app/A
 
 
 And finally, lets create the binding between Rascal and the Java file we created:Lets do this in a new file `CallJavaFunction.rsc`:
-```
+```rascal
 module CallJavaFunction
 
 @javaClass{com.mycompany.app.App}
