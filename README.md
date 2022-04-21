@@ -54,7 +54,7 @@ You should now be able to import this module in a Rascal console in either of tw
 In Rascal, you can bind functions to Java, and therefore use Java libraries. However, this requires a conversion between Java and Rascal values. To convert values between Rascal and Java, we use the library [Vallang](https://github.com/usethesource/vallang).
 
 ### Making Vallang available
-Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). This has to be added as a dependency to the maven project first in the file `pom.xml` as a child of the `project` node:
+Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). This has to be added as a repository to the maven project first in the file `pom.xml` as a child of the `project` node:
 ```xml
   <repositories>
     <repository>
