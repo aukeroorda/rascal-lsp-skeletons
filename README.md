@@ -51,7 +51,7 @@ syntax Trans = trans: Id event ":" Id to;
 In Rascal, you can bind functions to Java, and therefore use Java libraries. However, this requires a conversion between Java and Rascal values.
 
 ### Making Vallang available
-To convert values between Rascal and Java, we use the library [Vallang](). This has to be added as a dependency to the maven project first in the file `pom.xml`. Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/):
+To convert values between Rascal and Java, we use the library [Vallang](). Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/). This has to be added as a dependency to the maven project first in the file `pom.xml` as a child of the `project` node:
 ```xml
   <repositories>
     <repository>
@@ -82,6 +82,8 @@ mvn verify
 ### Constructing the Java source
 Now the Vallang library is available in our Java files. First add a constructor in `src/main/java/com/mycompany/app/App.java` taking an `IValueFactory` object:
 ```java
+package com.mycompany.app;
+
 import io.usethesource.vallang.IInteger;
 import io.usethesource.vallang.IValueFactory;
 
