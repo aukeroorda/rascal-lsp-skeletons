@@ -48,7 +48,10 @@ syntax Trans = trans: Id event ":" Id to;
 ```
 
 ## Working with Java bindings
-In Rascal, you can bind functions to Java. To convert values between Rascal and Java, we use the library [Vallang](). This has to be added as a dependency to the maven project first in the file `pom.xml`. Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/):
+In Rascal, you can bind functions to Java, and therefore use Java libraries. However, this requires a conversion between Java and Rascal values.
+
+### Making Vallang available
+To convert values between Rascal and Java, we use the library [Vallang](). This has to be added as a dependency to the maven project first in the file `pom.xml`. Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/):
 ```xml
   <repositories>
     <repository>
@@ -75,6 +78,8 @@ Next up, let Maven download and install the dependencies:
 ```
 mvn verify
 ```
+
+### Constructing the Java source
 Now the Vallang library is available in our Java files. First add a constructor in `src/main/java/com/mycompany/app/App.java` taking an `IValueFactory` object:
 ```java
 import io.usethesource.vallang.IInteger;
@@ -91,7 +96,7 @@ public class App
 }
 ```
 
-and then add a function `BigIncrement` to the `src/main/java/com/mycompany/app/App.java` file:
+and then add a function `BigIncrement` to the same class:
 ```java
     public IInteger BigIncrement(IInteger rascal_value) {
         // Convert to Java value
@@ -105,7 +110,7 @@ and then add a function `BigIncrement` to the `src/main/java/com/mycompany/app/A
     }
 ```
 
-
+### Constructing the Rascal source
 And finally, lets create the binding between Rascal and the Java file we created:Lets do this in a new file `CallJavaFunction.rsc`:
 ```rascal
 module CallJavaFunction
