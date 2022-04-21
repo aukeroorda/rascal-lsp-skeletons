@@ -127,19 +127,30 @@ public java int BigIncrement(int rascal_value);
 Now, in a Rascal terminal `import RascalJavaBindings;` and call it using `BigIncrement(20)`.
 
 
+Note that conversion of Java exceptions to Rascal exceptions is done using `rascalmpl` instead of Vallang. It can be included as dependency by adding onto `pom.xml`:
+```xml
+    <dependency>
+      <groupId>org.rascalmpl</groupId>
+      <artifactId>rascal</artifactId>
+      <version>0.23.0</version>
+    </dependency>
+```
+
 ## Using local Java libraries
 Based on [this so answer](https://stackoverflow.com/questions/364114/can-i-add-jars-to-maven-2-build-classpath-without-installing-them/7623805#7623805):
 1. Add a new local repository to `pom.xml`:
 ```xml
 <repository>
-    <id>repo</id>
-    <url>file://${project.basedir}/repo</url>
+    <id>local-maven-repo</id>
+    <url>file://${project.basedir}/local-maven-repo</url>
 </repository>
 ```
-2. Install each local jar as artifacts using Maven. Be sure to specify the correct metadata:
+2. Install each local jar as artifacts using Maven. Be sure to specify the correct metadata. Note: Do this from the project root folder `my-app/`:
 ```sh
 mvn install:install-file \
-  -DlocalRepositoryPath=repo \
+  -DlocalRepositoryPath=local-maven-repo \
+  -Durl=file:./local-maven-repo/ \
+  -DrepositoryId=local-maven-repo \
   -DcreateChecksum=true \
   -Dpackaging=jar \
   -Dfile=[your-jar] \
