@@ -1,5 +1,6 @@
 Manifest-Version: 0.0.1
 Main-Function: main
 Project-Name: my-app
+Require-Libraries: |lib://rascal-lsp|
 Main-Module: VSMain
 Source: src
