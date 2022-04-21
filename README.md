@@ -5,7 +5,7 @@
 Based on [https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 
 To create a new directory named `my-app` with a new Maven project:
-```
+```sh
 mvn archetype:generate \
     -DgroupId=com.mycompany.app \
     -DartifactId=my-app \
@@ -36,7 +36,7 @@ Source: src
 
 ## Creating a Rascal file
 Next up, create a Rascal file `Syntax.rsc` in the constructed `my-app/src/` directory.
-```
+```rascal
 module Syntax
 
 extend lang::std::Layout;
@@ -49,7 +49,7 @@ syntax Trans = trans: Id event ":" Id to;
 
 ## Working with Java bindings
 In Rascal, you can bind functions to Java. To convert values between Rascal and Java, we use the library [Vallang](). This has to be added as a dependency to the maven project first in the file `pom.xml`. Vallang is available from the [usethesource maven repository](https://releases.usethesource.io/maven/):
-```
+```xml
   <repositories>
     <repository>
       <id>usethesource</id>
@@ -64,7 +64,7 @@ In Rascal, you can bind functions to Java. To convert values between Rascal and 
   </pluginRepositories>
 ```
 Now that Vallang can be found, add it as a dependency for the project in the `dependencies` element:
-```
+```xml
     <dependency>
       <groupId>io.usethesource</groupId>
       <artifactId>vallang</artifactId>
@@ -75,9 +75,38 @@ Next up, let Maven download and install the dependencies:
 ```
 mvn verify
 ```
+Now the Vallang library is available in our Java files. First add a constructor taking an `IValueFactory` object:
+```java
+import io.usethesource.vallang.IInteger;
+import io.usethesource.vallang.IValueFactory;
 
 
-Lets do this in a new file `CallJavaFunction.rsc`:
+public class App 
+{
+    private final IValueFactory vf;
+
+    public App(IValueFactory vf) {
+        this.vf = vf;
+    }
+}
+```
+
+and then add a function `BigIncrement` to the `src/main/java/com/mycompany/app/App.java` file:
+```java
+    public IInteger BigIncrement(IInteger rascal_value) {
+        // Convert to Java value
+        int java_value = rascal_value.intValue();
+
+        // Big increment
+        java_value += 100;
+
+        // Return value that can be used in Rascal
+        return vf.integer(java_value);
+    }
+```
+
+
+And finally, lets create the binding between Rascal and the Java file we created:Lets do this in a new file `CallJavaFunction.rsc`:
 ```
 module CallJavaFunction
 
