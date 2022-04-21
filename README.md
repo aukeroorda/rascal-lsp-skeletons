@@ -46,6 +46,9 @@ start syntax Machine = machine: State+ states;
 syntax State = @Foldable state: "state" Id name Trans* out;
 syntax Trans = trans: Id event ":" Id to;
 ```
+You should now be able to open a Rascal console in either of two ways:
+1. Click `Import in new Rascal terminal`
+2. Open a Rascal Terminal yourself (cmd/ctrl + shift + P > Create Rascal Terminal), and import using `import Syntax;`.
 
 ## Working with Java bindings
 In Rascal, you can bind functions to Java, and therefore use Java libraries. However, this requires a conversion between Java and Rascal values.
