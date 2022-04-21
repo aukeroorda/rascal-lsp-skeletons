@@ -113,7 +113,7 @@ and then add a function `BigIncrement` to the same class:
 ```
 
 ### Constructing the Rascal source
-And finally, lets create the binding between Rascal and the Java file we created:Lets do this in a new file `CallJavaFunction.rsc`:
+And finally, lets create the binding between Rascal and the Java file we created. Lets do this in a new file `CallJavaFunction.rsc`:
 ```rascal
 module CallJavaFunction
 
