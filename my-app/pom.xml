@@ -23,6 +23,10 @@
       <id>usethesource</id>
       <url>https://releases.usethesource.io/maven/</url>
     </repository>
+    <repository>
+        <id>local-maven-repo</id>
+        <url>file://${project.basedir}/local-maven-repo</url>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
