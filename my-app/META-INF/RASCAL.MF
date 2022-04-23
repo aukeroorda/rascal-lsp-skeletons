@@ -1,6 +1,6 @@
 Manifest-Version: 0.0.1
 Main-Function: main
 Project-Name: my-app
-Require-Libraries: |lib://rascal-lsp|, |lib://frink|, |lib://frinklang|, |lib://local-maven-repo|
+Require-Libraries: |lib://rascal-lsp|, |lib://frink|, |lib://frinklang|, |lib://local-maven-repo|, |file:///local-maven-repo|
 Main-Module: VSMain
 Source: src
