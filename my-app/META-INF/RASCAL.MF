@@ -1,5 +1,6 @@
 Manifest-Version: 0.0.1
 Main-Function: main
 Project-Name: my-app
+Require-Libraries: |file:////Users/auke/.m2/repository/frinklang/frink/22.4.18/frink-22.4.18.jar|
 Main-Module: VSMain
 Source: src
