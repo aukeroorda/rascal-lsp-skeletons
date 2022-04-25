@@ -199,3 +199,5 @@ Multiple libraries can be added by adding addition locations, comma-separated:
 ```manifest
 Require-Libraries: |file:///<location1>|, |file:///<location2>|
 ```
+
+After this, you can use the functionality provided by the local jar in the Java functions.
