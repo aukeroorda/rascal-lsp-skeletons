@@ -181,11 +181,11 @@ mvn verify
 The next step is to specify the location of the installed `.jar` file in `RASCAL.MF`. Right now, this has to be done using a full, absolute path. Note that you therefore cannot copy the following path, but have to adjust it to match your username:
 ```manifest
 Require-Libraries: |file:////Users/auke/.m2/repository/frinklang/frink/22.4.18/frink-22.4.18.jar|
-
 ```
+
 Multiple libraries can be added by adding addition locations, comma-separated:
 ```manifest
 Require-Libraries: |file:///<location1>|, |file:///<location2>|
 ```
 
-After this, you can use the functionality provided by the local jar in the Java functions.
+After this, you can use the functionality provided by the local jar in the Java source files.
