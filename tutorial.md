@@ -137,20 +137,10 @@ Note that conversion of Java exceptions to Rascal exceptions is done using `rasc
 ```
 
 ## Using local Java libraries
-Based on [this so answer](https://stackoverflow.com/questions/364114/can-i-add-jars-to-maven-2-build-classpath-without-installing-them/7623805#7623805):
-1. Add a new local repository to `pom.xml`:
-```xml
-<repository>
-    <id>local-maven-repo</id>
-    <url>file://${project.basedir}/local-maven-repo</url>
-</repository>
-```
-2. Install each local jar as artifacts using Maven. Be sure to specify the correct metadata. Note: Do this from the project root folder `my-app/`:
+Based on [this so answer](https://stackoverflow.com/questions/364114/can-i-add-jars-to-maven-2-build-classpath-without-installing-them/7623805#7623805), but without the requirement of a local-maven-repo:
+1. Install each local jar as artifacts using Maven. Be sure to specify the correct metadata. Note: Do this from the project root folder `my-app/`:
 ```sh
 mvn install:install-file \
-  -DlocalRepositoryPath=local-maven-repo \
-  -Durl=file:./local-maven-repo/ \
-  -DrepositoryId=local-maven-repo \
   -DcreateChecksum=true \
   -DupdateReleaseInfo=true \
   -DgeneratePom=true \
@@ -164,9 +154,6 @@ mvn install:install-file \
 An example:
 ```
 mvn install:install-file \
-  -DlocalRepositoryPath=local-maven-repo \
-  -Durl=file:./local-maven-repo/ \
-  -DrepositoryId=local-maven-repo \
   -DcreateChecksum=true \
   -DupdateReleaseInfo=true \
   -DgeneratePom=true \
@@ -177,7 +164,7 @@ mvn install:install-file \
   -Dversion=22.4.18
 ```
 
-3. Add each installed artifact as dependecy in `pom.xml` using the specified metadata:
+2. Add each installed artifact as dependecy in `pom.xml` using the specified metadata:
 ```xml
     <dependency>
       <groupId>groupId</groupId>
@@ -186,14 +173,15 @@ mvn install:install-file \
     </dependency>
 ```
 
-4. Let Maven download and install the dependencies:
+3. Let Maven download and install the dependencies:
 ```sh
 mvn verify
 ```
 
-The next step is to specify the location of the installed `.jar` file in `RASCAL.MF`. Right now, this has to be done using a full, absolute path. Note that you therefore cannot copy the following path, but have to adjust it for the location of your project:
+The next step is to specify the location of the installed `.jar` file in `RASCAL.MF`. Right now, this has to be done using a full, absolute path. Note that you therefore cannot copy the following path, but have to adjust it to match your username:
 ```manifest
-Require-Libraries: |file:////Users/auke/rascal-lsp-skeletons/my-app/local-maven-repo/frinklang/frink/22.4.18/frink-22.4.18.jar|
+Require-Libraries: |file:////Users/auke/.m2/repository/frinklang/frink/22.4.18/frink-22.4.18.jar|
+
 ```
 Multiple libraries can be added by adding addition locations, comma-separated:
 ```manifest
