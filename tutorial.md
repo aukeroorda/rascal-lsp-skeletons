@@ -138,7 +138,7 @@ Note that conversion of Java exceptions to Rascal exceptions is done using `rasc
 
 ## Using local Java libraries
 Based on [this so answer](https://stackoverflow.com/questions/364114/can-i-add-jars-to-maven-2-build-classpath-without-installing-them/7623805#7623805), but without the requirement of a local-maven-repo:
-1. Install each local jar as artifacts using Maven. Be sure to specify the correct metadata. Note: Do this from the project root folder `my-app/`:
+1. Install each local jar as an artifact using Maven. Be sure to specify the correct metadata:
 ```sh
 mvn install:install-file \
   -DcreateChecksum=true \
