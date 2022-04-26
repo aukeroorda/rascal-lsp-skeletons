@@ -10,7 +10,7 @@ import ParseTree;
 
 set[LanguageService] picoLanguagecontributor() = {
     parser(Tree (str input, loc src) {
-        return parse(#start[Program], input, src);
+        return parse(#start[Machine], input, src);
     }),
     outliner(picoOutliner),
     summarizer(picoSummarizer),
@@ -19,15 +19,15 @@ set[LanguageService] picoLanguagecontributor() = {
     inlayHinter(picoHinter)
 };
 
-list[DocumentSymbol] picoOutliner(start[Program] input)
+list[DocumentSymbol] picoOutliner(start[Machine] input)
     = [symbol("<input.src>", \file(), input.src, children=[
-        *[symbol("<var.id>", \variable(), var.src) | /IdType var := input]
+        *[symbol("<state.name>", \variable(), state.src) | /State state := input]
     ])];
 
-Summary picoSummarizer(loc l, start[Program] input) {
-    rel[str, loc] defs = {<"<var.id>", var.src> | /IdType var := input};
+Summary picoSummarizer(loc l, start[Machine] input) {
+    rel[str, loc] defs = {<"<state.name>", state.src> | /State state := input};
     rel[loc, str] uses = {<id.src, "<id>"> | /Id id := input};
-    rel[loc, str] docs = {<var.src, "*variable* <var>"> | /IdType var := input};
+    rel[loc, str] docs = {<var.src, "*variable* <var>"> | /State var := input};
 
     return summary(l,
         references = (uses o defs)<1,0>,
@@ -37,22 +37,23 @@ Summary picoSummarizer(loc l, start[Program] input) {
 }
 
 data Command
-     = renameAtoB(start[Program] program);
+     = renameAtoB(start[Machine] machine);
 
-rel[loc, Command] picoLenses(start[Program] input) = {<input@\loc, renameAtoB(input, title="Rename variables a to b.")>};
+rel[loc, Command] picoLenses(start[Machine] input) = {<input@\loc, renameAtoB(input, title="Rename variables a to b.")>};
 
-list[InlayHint] picoHinter(start[Program] input) {
-    typeLookup = ( "<name>" : "<tp>" | /(IdType)`<Id name> : <Type tp>` := input);
+list[InlayHint] picoHinter(start[Machine] input) {
+    // typeLookup = ( "<name>" : "<tp>" | /(IdType)`<Id name> : <Type tp>` := input);
 
-    return [
-        hint(name.src, ": <typeLookup["<name>"]>", \type()) | /(Expression)`<Id name>` := input
-    ];
+    // return [
+    //     hint(name.src, ": <typeLookup["<name>"]>", \type()) | /(Expression)`<Id name>` := input
+    // ];
+    return [hint(state.src, "very nice state", \type()) | /State state := input];
 }
 
-list[DocumentEdit] getAtoBEdits(start[Program] input)
+list[DocumentEdit] getAtoBEdits(start[Machine] input)
     = [changed(input@\loc.top, [replace(id@\loc, "b") | /id:(Id) `a` := input])];
 
-void picoCommands(renameAtoB(start[Program] input)) {
+void picoCommands(renameAtoB(start[Machine] input)) {
     applyDocumentsEdits(getAtoBEdits(input));
 }
 
