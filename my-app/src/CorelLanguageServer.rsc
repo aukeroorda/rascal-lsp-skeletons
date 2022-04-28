@@ -4,7 +4,6 @@ import Syntax;
 
 import util::IDEServices;
 import util::LanguageServer;
-import util::NonExisting;
 import util::Reflective;
 import ParseTree;
 
@@ -62,10 +61,10 @@ void main() {
     registerLanguage(
         language(
             pathConfig(),
-            "Pico",
+            "StateMachineLanguage",
             "pico",
-            "LanguageServer",
-            "picoLanguagecontributor"
+            "CorelLanguageServer", // This is the module that is imported for the DSL
+            "picoLanguagecontributor" // Function to call with the contributions of this DSL
         )
     );
 }
