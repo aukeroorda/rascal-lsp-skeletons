@@ -4,6 +4,7 @@ import Syntax;
 
 import util::IDEServices;
 import util::LanguageServer;
+import util::NonExisting;
 import util::Reflective;
 import ParseTree;
 
