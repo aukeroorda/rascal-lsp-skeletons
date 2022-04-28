@@ -2,8 +2,8 @@ module CorelLanguageServer
 
 import Syntax;
 
-import util::LanguageServer;
 import util::IDEServices;
+import util::LanguageServer;
 import util::Reflective;
 import ParseTree;
 
