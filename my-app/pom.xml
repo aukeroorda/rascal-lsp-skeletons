@@ -49,11 +49,6 @@
       <version>0.23.0</version>
     </dependency>
     <dependency>
-      <groupId>org.rascalmpl</groupId>
-      <artifactId>rascal-core</artifactId>
-      <version>0.4.21</version>
-    </dependency>
-    <dependency>
       <groupId>frinklang</groupId>
       <artifactId>frink</artifactId>
       <version>22.4.18</version>
