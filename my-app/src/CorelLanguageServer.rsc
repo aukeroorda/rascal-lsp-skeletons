@@ -61,10 +61,10 @@ void main() {
     registerLanguage(
         language(
             pathConfig(),
-            "StateMachineLanguage",
-            "pico",
-            "CorelLanguageServer", // This is the module that is imported for the DSL
-            "picoLanguagecontributor" // Function to call with the contributions of this DSL
+            "StateMachineLanguage",     // Name of the language
+            "pico",                     // Extension of source files
+            "CorelLanguageServer",      // Module that is imported for the DSL
+            "picoLanguagecontributor"   // Main function to call with the contributions of this DSL
         )
     );
 }
