@@ -60,7 +60,7 @@ void picoCommands(renameAtoB(start[Machine] input)) {
 void main() {
     registerLanguage(
         language(
-            pathConfig(),
+            getProjectPathConfig(|project://my-app/|),
             "StateMachineLanguage",     // Name of the language
             "pico",                     // Extension of source files
             "CorelLanguageServer",      // Module that is imported for the DSL
