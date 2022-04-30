@@ -1,1 +1,10 @@
 state Open
+    close: Closed
+state Closed
+    open: Open
+    lock: Locked
+
+state Locked
+    unlock: Closed
+
+state b
