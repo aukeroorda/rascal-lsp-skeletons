@@ -30,7 +30,7 @@ Summary picoSummarizer(loc l, start[Machine] input) {
     rel[loc, str] uses = {<id.src, "<id>"> | /Id id := input};
     rel[loc, str] docs = {<var.src, "*variable* <var>"> | /State var := input};
 
-    // Computing messages/docs requires java libraries:
+    // Usecase: Computing messages/docs using java libraries:
     str result = frink_parse("1/2 cup");
 
     return summary(l,
