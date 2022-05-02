@@ -1,6 +1,7 @@
 module CorelLanguageServer
 
 import Syntax;
+import RascalJavaBindings;
 
 import util::IDEServices;
 import util::LanguageServer;
@@ -28,6 +29,9 @@ Summary picoSummarizer(loc l, start[Machine] input) {
     rel[str, loc] defs = {<"<state.name>", state.src> | /State state := input};
     rel[loc, str] uses = {<id.src, "<id>"> | /Id id := input};
     rel[loc, str] docs = {<var.src, "*variable* <var>"> | /State var := input};
+
+    // Computing messages/docs requires java libraries:
+    str result = frink_parse("1/2 cup");
 
     return summary(l,
         references = (uses o defs)<1,0>,
