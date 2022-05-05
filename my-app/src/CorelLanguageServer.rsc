@@ -31,7 +31,10 @@ Summary picoSummarizer(loc l, start[Machine] input) {
     rel[loc, str] docs = {<var.src, "*variable* <var>"> | /State var := input};
 
     // Usecase: Computing messages/docs using java libraries:
-    str result = frink_parse("1/2 cup");
+    // str result = frink_parse("1/2 cup");
+
+    // Validate that java bindings work (without using functionality from a jar)
+    int val = BigIncrement(20);
 
     return summary(l,
         references = (uses o defs)<1,0>,
