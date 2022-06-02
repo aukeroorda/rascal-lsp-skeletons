@@ -51,12 +51,8 @@ list[InlayHint] picoHinter(start[Machine] input) {
     // ];
 
 
-    // Test 1: Validate that java bindings work (without using functionality from a jar)
+    // Validate that java bindings work (without using functionality from a jar)
     int val = BigIncrement(20);
-
-    // Test 2: Computing messages/docs using java libraries:
-    // Note: This requires some uncommenting in RascalJavaBindings.rsc AND App.java!
-    // str result = frink_parse("1/2 cup");
 
     return [hint(state.src, "very nice state" + toString(val), \type()) | /State state := input];
 }
