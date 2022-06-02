@@ -6,6 +6,7 @@ import RascalJavaBindings;
 import util::IDEServices;
 import util::LanguageServer;
 import util::Reflective;
+import util::Math;
 import ParseTree;
 
 
@@ -30,12 +31,6 @@ Summary picoSummarizer(loc l, start[Machine] input) {
     rel[loc, str] uses = {<id.src, "<id>"> | /Id id := input};
     rel[loc, str] docs = {<var.src, "*variable* <var>"> | /State var := input};
 
-    // Usecase: Computing messages/docs using java libraries:
-    // str result = frink_parse("1/2 cup");
-
-    // Validate that java bindings work (without using functionality from a jar)
-    int val = BigIncrement(20);
-
     return summary(l,
         references = (uses o defs)<1,0>,
         definitions = uses o defs,
@@ -54,7 +49,16 @@ list[InlayHint] picoHinter(start[Machine] input) {
     // return [
     //     hint(name.src, ": <typeLookup["<name>"]>", \type()) | /(Expression)`<Id name>` := input
     // ];
-    return [hint(state.src, "very nice state", \type()) | /State state := input];
+
+
+    // Test 1: Validate that java bindings work (without using functionality from a jar)
+    int val = BigIncrement(20);
+
+    // Test 2: Computing messages/docs using java libraries:
+    // Note: This requires some uncommenting in RascalJavaBindings.rsc AND App.java!
+    // str result = frink_parse("1/2 cup");
+
+    return [hint(state.src, "very nice state" + toString(val), \type()) | /State state := input];
 }
 
 list[DocumentEdit] getAtoBEdits(start[Machine] input)
