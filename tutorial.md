@@ -25,13 +25,15 @@ First, create a directory to hold the Rascal project information:
 mkdir META-INF && cd META-INF
 ```
 
-In this directory, create a file `RASCAL.MF` with the following contents:
+In this directory, create a file `RASCAL.MF` with the following contents. __Note__: It is currently required to end this file with two newlines:
 ```
 Manifest-Version: 0.0.1
 Main-Function: main
 Project-Name: my-app
 Main-Module: VSMain
 Source: src
+
+
 ```
 
 ## Creating a Rascal file
