@@ -1,3 +1,7 @@
+> [!NOTE]
+> Creation of a Rascal Project has been simplified. See [the documentation](https://www.rascal-mpl.org/docs/GettingStarted/CreateNewProject/).
+
+
 ## Contents
 This repository contains a [tutorial](./tutorial.md) for setting up a Rascal project to be used in VS-code.
 Each of the 4 main steps is accompanied by a branch:
